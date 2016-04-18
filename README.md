@@ -1,7 +1,7 @@
 HttpScraperApp
 ==============
 
-Cross-platform Xamarin App which targets UWP, Android and iOS;
+Cross-platform XamarinForms App which targets UWP, Android and iOS;
 
 - A single button to run the requests simultaneously.
 
