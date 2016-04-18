@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="HttpScraper.Views.MainView" 
+            xmlns:converters="clr-namespace:HttpScraper.Converters;assembly=HttpScraper"
+            xmlns:strings="clr-namespace:HttpScraper.Strings;assembly=HttpScraper"
+            Title="{x:Static strings:Resources.MainViewTitle}" 
+            IsBusy="{Binding IsLoading}"
+            Opacity="{Binding IsLoading, Converter={StaticResource BoolToOpacityConverter}}">
+  <TabbedPage.Resources>
+    <ResourceDictionary>
+      <converters:BoolToOpacityConverter x:Key="BoolToOpacityConverter" />
+    </ResourceDictionary>
+  </TabbedPage.Resources>
+  <ContentPage Title="{x:Static strings:Resources.NthLetter}">
+    <Label Text="{Binding NthLetter}" />
+  </ContentPage>
+  <ContentPage Title="{x:Static strings:Resources.EveryNthLetter}">
+    <Label Text="{Binding EveryNthLetter}" />
+  </ContentPage>
+  <ContentPage Title="{x:Static strings:Resources.WordCount}">
+    <Label Text="{Binding WordCountError}" />
+    <ListView ItemsSource="{Binding WordCount}" HasUnevenRows="true">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <StackLayout Padding="10" Orientation="Horizontal">
+              <Label Text="{Binding Word}"/>
+              <Label Text="{Binding Count}" TextColor="Green"/>
+            </StackLayout>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+  </ContentPage>
+  <ContentPage.ToolbarItems>
+    <ToolbarItem Text="{x:Static strings:Resources.StartButton}" Clicked="OnStartClicked" />
+  </ContentPage.ToolbarItems>
+</TabbedPage>
