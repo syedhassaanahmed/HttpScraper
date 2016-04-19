@@ -17,6 +17,7 @@ namespace HttpScraper.Core
         public async Task<Response<TContentParser>> RunAsync<TContentParser>()
             where TContentParser : ContentParserBase, new()
         {
+			//So that we can show progress indicator
             await Task.Delay(2000);
 
             using (var client = new HttpClient())
