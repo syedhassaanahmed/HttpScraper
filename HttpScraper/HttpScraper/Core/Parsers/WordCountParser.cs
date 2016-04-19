@@ -9,7 +9,7 @@ namespace HttpScraper.Core.Parsers
     {
         public IEnumerable<WordCountItem> GetWordCount()
         {
-            //Split by whitespaces, obtain count for each word, sort by count descending, create dictionary
+            //Split by whitespaces, obtain count for each word, sort by count descending, select into object
             return Regex.Split(Content, @"\s+")
                 .GroupBy(w => w, (x, y) => new WordCountItem { Word = x, Count = y.Count() })
                 .OrderByDescending(w => w.Count);
