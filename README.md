@@ -1,5 +1,5 @@
-HttpScraperApp
-==============
+HttpScraper
+===========
 
 Cross-platform XamarinForms App which targets UWP, Android and iOS;
 
