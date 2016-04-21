@@ -26,7 +26,15 @@
           <ViewCell>
             <StackLayout Padding="10" Orientation="Horizontal">
               <Label Text="{Binding Word}"/>
-              <Label Text="{Binding Count}" TextColor="Green"/>
+              <!--<Image Source="platform.png" />-->
+              <Label Text="{Binding Count}">
+                <Label.TextColor>
+                  <OnPlatform x:TypeArguments="Color" 
+                              Android="Green" 
+                              iOS="Gray" 
+                              WinPhone="Blue" />
+                </Label.TextColor>
+              </Label>
             </StackLayout>
           </ViewCell>
         </DataTemplate>

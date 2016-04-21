@@ -4,6 +4,7 @@ using HttpScraper.Core.Parsers;
 using HttpScraper.Strings;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace HttpScraper.ViewModels
 {
@@ -72,7 +73,7 @@ namespace HttpScraper.ViewModels
 
         async Task RunRequestsAsync()
         {
-            var request = new Request("http://www.google.com");
+            var request = new Request(GetPlatformUrl());
 
             await Task.WhenAll
             (
@@ -88,6 +89,28 @@ namespace HttpScraper.ViewModels
                     .OnSuccess(p => WordCount = p.GetWordCount())
                     .OnFailure(() => WordCountError = Resources.RequestError))
             );
+        }
+
+        string GetPlatformUrl()
+        {
+            var url = string.Empty;
+
+            switch (Device.OS)
+            {
+                case TargetPlatform.Android:
+                    url = "http://www.google.com";
+                    break;
+                case TargetPlatform.iOS:
+                    url = "http://www.apple.com";
+                    break;
+                case TargetPlatform.WinPhone:
+                    url = "http://www.microsoft.com";
+                    break;
+                default:
+                    break;
+            }
+
+            return url;
         }
     }
 }
